@@ -1,0 +1,3 @@
+SELECT *
+FROM certificates
+WHERE self_signed = true;
