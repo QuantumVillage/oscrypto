@@ -1,0 +1,4 @@
+SELECT * 
+FROM certificates 
+WHERE signing_algorithm IS NOT NULL 
+    AND (LOWER(signing_algorithm) LIKE '%sha1%' OR LOWER(signing_algorithm) LIKE '%md5%');
