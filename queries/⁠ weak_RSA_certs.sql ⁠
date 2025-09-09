@@ -1,0 +1,6 @@
+SELECT * 
+FROM certificates 
+WHERE key_algorithm = 'rsaEncryption' 
+    AND key_strength IS NOT NULL  
+    AND key_strength GLOB '[0-9]*' 
+    AND CAST(key_strength AS INTEGER) < 2048;
