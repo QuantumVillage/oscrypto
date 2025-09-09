@@ -1,0 +1,10 @@
+SELECT * 
+FROM certificates 
+WHERE path IN (SELECT value 
+               FROM augeas 
+               -- change this line to match your apache config file  if different from standard -V.
+               WHERE path='/etc/apache2/sites-available/default-ssl.conf' 
+                    AND label='arg' 
+                    AND (LOWER(value) LIKE '%.crt' 
+                         OR LOWER(value) LIKE '%.pem' 
+                         OR LOWER(value) LIKE '%.key'));
