@@ -1,0 +1,12 @@
+SELECT path, 
+    subject, 
+    issuer, 
+    key_algorithm, 
+    key_strength, 
+    datetime(not_valid_before, 'unixepoch') AS not_before, 
+    datetime(not_valid_after,  'unixepoch') AS not_after, 
+    (not_valid_after - not_valid_before) / 86400 AS lifetime_days 
+FROM certificates 
+WHERE not_valid_before IS NOT NULL 
+    AND not_valid_after IS NOT NULL 
+    AND (not_valid_after - not_valid_before) > (86400 * 365 * 2);
